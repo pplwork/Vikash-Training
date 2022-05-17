@@ -83,3 +83,21 @@ const primaryFunc=(num1,num2)=>{
 const secondaryFunc=primaryFunc(2,4);
 console.log(secondaryFunc())
 
+function add(a){
+  return function add2(b){
+    return function add3(c){
+      return function add4(d){
+        return a + b + c + d ;
+      }
+    }
+  }
+}
+
+let add2 = add(1);
+let add3 = add2(2);
+let add4 = add3(3);
+let result = add4(4);
+console.log(result) 
+
+//closure chaining
+console.log(add(5)(5)(5)(5)); 
