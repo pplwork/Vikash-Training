@@ -1,0 +1,38 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.outer , .middle, .inner{
+    margin: auto;
+    padding: 5rem;
+    margin: 5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.outer{
+    color: red;
+    background: red;
+}
+.middle{
+    background: cyan;
+}
+.inner{
+    background-color: yellow;
+}
+.keyboard{
+    text-align: center;
+}
+.keypressEvents{
+    margin: 5rem auto;
+    height: 2rem;
+    width: 15rem;
+    border: 2px solid orange;
+    display: flex;
+    outline: none;
+    align-items: center;
+    justify-content: center;
+}
