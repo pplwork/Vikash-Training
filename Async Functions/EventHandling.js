@@ -34,6 +34,6 @@ keypressEvents.addEventListener('keydown', logKey)
 
 function logKey(e) {
     console.log(e)
-    keypressEvents.textContent += ` ${e.code}`;
     inner.textContent = "changed"
+    inner.textContent += ` ${e.code}`;
 }
