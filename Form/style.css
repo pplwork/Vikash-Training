@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap');
+:root{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: rgb(218, 218, 218);
+    font-family: 'Open Sans', sans-serif;
+}
+h5{
+    font-weight: bold;
+}
+.container{
+    margin: auto;
+    max-width: 90%;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: aliceblue;
+}
+.form{
+    height: 80vh;
+    margin: 2rem;
+    padding: 2rem;
+}
+.form>label{
+    display: inline-block;
+    width: 80%;
+    margin: .5rem;
+}
+.form > input{
+    display: inline-block;
+    border: 1px solid grey;
+    outline: none;
+    margin: .5rem;
+    width: 50vh;
+    padding: 5px 10px;
+    border-radius: 2px;
+}
+#sex{
+    margin: auto;
+    display:block;
+    padding: .2rem .5rem;
+}
+.form> span{
+    display: block;
+    margin: auto;
+    text-align: center;
+    margin: 1rem;
+    color: grey;
+}
+.form>button{
+    display: block;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    margin: auto;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    border: 1px solid gray;
+    border-radius: 2px;
+}
