@@ -44,9 +44,11 @@ const handleSubmit = (e) => {
     }
     if (password.search(/[a-z]/) === -1) {
         passwordAlert.textContent = "please enter LowerCase"
+        return false
     }
     if (password.search(/[A-Z]/) === -1) {
         passwordAlert.textContent = "please enter Uppercase"
+        return false
     }
     if (password.search(/[!\@\#\$\%\^\&\*\(\)\_\?]/) === -1) {
         passwordAlert.textContent = "please enter atleast one special character"
