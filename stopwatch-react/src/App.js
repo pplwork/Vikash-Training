@@ -32,9 +32,7 @@ function App() {
   const handleLap = (e) => {
     addLap(time)
     laps.push(time)
-    alert.show((time/100).toFixed(1)/10)
-
-    console.log(lap, "___",laps)
+    alert.show(Math.round((time/100).toFixed(1)/10)+":"+time%100+" s")
   }
 
   useEffect(() => {
@@ -54,7 +52,7 @@ function App() {
     return () => {
       clearInterval(interval);
     }
-  }, [isActive, isPaused])
+  }, [isActive, isPaused, time])
 
 
   return (
@@ -68,7 +66,7 @@ function App() {
         setIsPaused, handleStart,
         handlePause, handleReset
       }} />
-      <Lap />
+      <Lap laps={laps}/>
 
     </div>
   );
