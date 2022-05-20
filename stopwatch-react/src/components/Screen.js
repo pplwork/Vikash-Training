@@ -2,7 +2,6 @@ import React from 'react'
 import './screen.css'
 
 const screen = ({time}) => {
-  console.log(time)
   return (
     <div className='screen'>
         <h2 className='timer'>

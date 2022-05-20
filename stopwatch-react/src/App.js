@@ -8,7 +8,7 @@ import {useAlert} from 'react-alert'
 function App() {
   const alert=useAlert()
   let laps=[];
-  const [lap, addLap] = useState(0)
+  const [lap, addLap] = useState([])
   const [time, setTime] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [isPaused, setIsPaused] = useState(true);
@@ -30,9 +30,11 @@ function App() {
   }
 
   const handleLap = (e) => {
-    addLap(time)
+    addLap(prev=>[...prev,time])
     laps.push(time)
     alert.show(Math.round((time/100).toFixed(1)/10)+":"+time%100+" s")
+    console.log(lap)
+
   }
 
   useEffect(() => {
@@ -66,7 +68,7 @@ function App() {
         setIsPaused, handleStart,
         handlePause, handleReset
       }} />
-      <Lap laps={laps}/>
+      <Lap lap={lap}/>
 
     </div>
   );
