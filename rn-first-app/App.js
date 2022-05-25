@@ -23,6 +23,7 @@ export default function App() {
 
   const ganeOverHandler=(rounds)=>{
     setNumberOfRounds(rounds)
+    setUserNumber(null)
   }
 
   let conten=<StartGame onStartGame={startGameHandler}/>
@@ -37,6 +38,7 @@ export default function App() {
     <View style={styles.container}>
       <Header title={"Guess my Number"} />
       {conten}
+      <StatusBar style="auto" />
     </View>
   );
 }

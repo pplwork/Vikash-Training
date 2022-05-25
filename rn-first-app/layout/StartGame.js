@@ -19,7 +19,7 @@ const StartGame = (props) => {
 
     const [enteredValue, setEnteredValue] = useState('')
     const [confirmed, setConfirmed] = useState(false)
-    const [selectedNumber, setSelectedNumber] = useState()
+    const [selectedNumber, setSelectedNumber] = useState(null)
 
     const numberInputHandler = inputText => {
 
