@@ -33,12 +33,13 @@ import {
   TextInput,
 } from "react-native";
 
-import Landing from './component/auth/Landing.js';
+import LandingPage from './component/auth/Landing.js';
 import RegisterPage from './component/auth/Register.js';
 import Main from './component/Main';
 import LoginPage from './component/auth/LoginPage';
 import AddScreen from './component/main/Add';
 import SaveScreen from './component/main/Save';
+import CommentScreen from './component/main/Comment';
 
 const Stack = createStackNavigator();
 
@@ -83,8 +84,8 @@ export class App extends Component {
     if (!loggedIn) {
       return (
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="LandingPage">
-            <Stack.Screen name="Landing" component={Landing} options={{ headerShown: false }} />
+          <Stack.Navigator initialRouteName="Landing">
+            <Stack.Screen name="Landing" component={LandingPage} options={{ headerShown: false }} />
             <Stack.Screen name="Register" component={RegisterPage} />
             <Stack.Screen name="Login" component={LoginPage} />
           </Stack.Navigator>
@@ -99,11 +100,11 @@ export class App extends Component {
           <Stack.Screen name="Main" component={Main} options={{ headerShown: false }} />
           <Stack.Screen name="Add" component={AddScreen} navigation={this.props.navigation} />
           <Stack.Screen name="Save" component={SaveScreen} navigation={this.props.navigation} />
+          <Stack.Screen name="Comment" component={CommentScreen} navigation={this.props.navigation} />
         </Stack.Navigator>
       </NavigationContainer>
       </Provider>
     )
-
   }
 }
 

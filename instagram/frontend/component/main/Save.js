@@ -1,22 +1,30 @@
-import { Text, View, Button, TextInput, Image } from "react-native";
-import React, { useState } from "react";
+import { View, Button, TextInput, Image } from "react-native";
+import React, { useEffect, useState } from "react";
 import firebase from "firebase";
-import { NavigationContainer } from "@react-navigation/native";
 require("firebase/firestore");
 require("firebase/firebase-storage");
 
 const Save = (props) => {
-    console.log(props.route.params), "______";
-    let { image } = props.route.params;
-    console.log(image.toString());
 
     const [caption, setCaption] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
+
+
+    useEffect(()=>{
+        let { image } = props.route.params;
+
+        setImageUrl(image)
+        console.log(image)
+
+
+    },[])
     console.log(firebase.auth())
 
     const uploadImage = async () => {
-        const { image } = props.route.params;
-        // console.log(image)
-        // const image = props.route.params.image;
+
+        const image = props.route.params.image;
+
+
         const response = await fetch(image);
         const blob = await response.blob();
 
@@ -33,7 +41,7 @@ const Save = (props) => {
         const taskCompleted = () => {
             task.snapshot.ref.getDownloadURL().then(snapshot => {
                 console.log(snapshot)
-                savePostData(snapshot)
+                savePostData(snapshot) //to save it in firestore also line 46
             }
             )
         }
@@ -51,14 +59,15 @@ const Save = (props) => {
         .collection('userPosts')
         .add({
             downloadUrl,
+            likesCount:0,
             caption,
             creation:firebase.firestore.FieldValue.serverTimestamp()
-        }).then(()=>props.navigation.popToTop())
+        }).then(()=>props.navigation.popToTop())                     //poptotop to return to main page
     }
 
     return (
         <View style={{ flex: 1 }}>
-            <Image source={{ uri: { image } = props.route.params }} />
+            <Image style={{flex:1,aspectRatio: 1 / 1, height: 45}} source={{ uri: imageUrl }} />
             <TextInput
                 placeholder="Write Something..."
                 onChangeText={(caption) => setCaption(caption)}

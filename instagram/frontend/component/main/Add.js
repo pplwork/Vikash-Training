@@ -16,17 +16,20 @@ export default function Add ({navigation}) {
       sethasCameraPermission(cameraStatus.status === "granted");
       
       const galleryStatus = await ImagePicker.requestCameraPermissionsAsync()
-      if(galleryStatus.status !== 'granted'){
-        sethasGalleryPermission("granted")
-        alert('sorry, we need camera roll permission to make it work!')
-      }
+
+      sethasGalleryPermission(galleryStatus.status === "granted");
+
+      // if(galleryStatus.status !== 'granted'){
+      //   sethasGalleryPermission("granted")
+      //   alert('sorry, we need camera roll permission to make it work!')
+      // }
     })();
   }, []);
 
   const takePicture=async()=>{
     if(camera){
       const data= await camera.takePictureAsync(null)
-      console.log(data.uri)      
+      console.log(data.uri)
       setImage(data.uri)
     }
   }
@@ -44,18 +47,19 @@ export default function Add ({navigation}) {
     }
   }
 
-  if (hasCameraPermission === null|| hasCameraPermission===false) {
+  if (hasCameraPermission === null|| hasGalleryPermission===false) {
     return <View />;
   }
   if (hasCameraPermission === false || hasGalleryPermission==false) {
     return <Text>No access to camera</Text>;
   }
+
   return (
     <View style={{flex:1}}>
       <View style={styles.cameraContainer}>
         <Camera style={styles.fixedRationTag} ratio={'1:1'} type={type} ref={ref=>setCamera(ref)} />
       </View>
-      <TouchableOpacity
+      <Button
         style={styles.button}
         onPress={() => {
           setType(
@@ -64,7 +68,7 @@ export default function Add ({navigation}) {
         }}
       >
         <Text style={styles.text}> Flip </Text>
-      </TouchableOpacity>
+      </Button>
       <Button title="Take Picture" onPress={()=>takePicture()} />
       <Button title="Pick Picture from agmllery" onPress={()=>pickImage()} />
       <Button title="Save" onPress={()=>navigation.navigate('Save',{image})} />

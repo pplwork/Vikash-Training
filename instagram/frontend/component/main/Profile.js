@@ -9,6 +9,7 @@ const Profile = (props) => {
   const [userPosts, setUserPosts] = useState([])
   const [user, setuser] = useState(null)
   const [isfollowing, setIsfollowing] = useState(false)
+  console.log(user)
 
   useEffect(() => {
 
@@ -49,7 +50,6 @@ const Profile = (props) => {
           console.log(posts)
           setUserPosts(posts)
         })
-
     }
 
     if(props.following.indexOf(props.route.params.uid) > -1){
@@ -82,19 +82,19 @@ const Profile = (props) => {
     firebase.auth().signOut();
   }
 
-  if (user === null) {
-    return <View />
-  }
+  // if (user === null) {
+  //   return <View />
+  // }
 
   return (
     <View style={style.container}>
       <View style={style.userInfo}>
         <Text>User Info</Text>
         <View >
-          <Text>{user.name}</Text>
+          <Text>{user?.name}</Text>
         </View>
         <View>
-          <Text>{user.email}</Text>
+          <Text>{user?.email}</Text>
         </View>
 
         {props.route.params.uid !== firebase.auth().currentUser.uid ? (
@@ -119,7 +119,6 @@ const Profile = (props) => {
           numColumns={3}
           horizontal={false}
           data={userPosts}
-          // keyExtractor={}
           renderItem={({ item }) => (
             <View style={style.containerImage}>
               <Image

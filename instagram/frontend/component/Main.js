@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchUser, fetchUserPosts, fetchUserFollowing, clearData } from "../redux/actions/index";
 import firebase from "firebase";
-import { StyleSheet, Text, View } from "react-native";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 

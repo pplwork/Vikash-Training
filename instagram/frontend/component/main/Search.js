@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, TextInput } from "react-native";
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, TextInput } from "react-native";
 import firebase from 'firebase';
 require('firebase/firestore')
 
@@ -15,8 +15,8 @@ const Search = (props) => {
             .then((snapshot) => {
                 const users = snapshot.docs.map(doc => {
                     const data = doc.data()
-                    const docId = doc.id;
-                    return { docId, ...data }
+                    const id = doc.id;
+                    return { id, ...data }
                 })
                 setUsers(users)
             })
@@ -24,7 +24,7 @@ const Search = (props) => {
     return (
         <View style={style.container}>
             <View>
-                <TextInput placeholder='Search...' onChangeText={(search) => fetchUsers(search)} />
+                <TextInput placeholder='Search' onChangeText={(search) => fetchUsers(search)} />
             </View>
             <FlatList
             numColumns={1}
