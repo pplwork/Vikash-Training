@@ -1,6 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import React, { useState, useRef ,useEffect, Component} from "react";
+import React, {Component} from "react";
 import firebase from 'firebase';
 
 import {
@@ -33,7 +31,7 @@ class RegisterPage extends Component {
           firebase.firestore().collection("users")
           .doc(firebase.auth().currentUser.uid)
           .set({
-            name,email,
+            name,email
           })
             console.log(response)
         })
@@ -49,12 +47,12 @@ class RegisterPage extends Component {
           />
           <TextInput
             placeholder='Enter Your Email'
-            onChangeText={email=>this.setState({email})}
+            onChangeText={(email)=>this.setState({email})}
           />
           <TextInput
             placeholder='Enter Your Password'
             secureTextEntry={true}
-            onChangeText={password=>this.setState({password})}
+            onChangeText={(password)=>this.setState({password})}
           />
           <Button title='Signup' onPress={()=>this.onSubmit()} />
       </View>

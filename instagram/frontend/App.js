@@ -35,7 +35,7 @@ import {
 
 import LandingPage from './component/auth/Landing.js';
 import RegisterPage from './component/auth/Register.js';
-import Main from './component/Main';
+import MainScreen from './component/Main';
 import LoginPage from './component/auth/LoginPage';
 import AddScreen from './component/main/Add';
 import SaveScreen from './component/main/Save';
@@ -62,6 +62,7 @@ export class App extends Component {
           loaded: true
         })
       } else {
+        console.log(user)
         this.setState({
           loggedIn: true,
           loaded: true
@@ -97,7 +98,7 @@ export class App extends Component {
       <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Main">
-          <Stack.Screen name="Main" component={Main} options={{ headerShown: false }} />
+          <Stack.Screen name="Main" component={MainScreen} options={{ headerShown: false }} />
           <Stack.Screen name="Add" component={AddScreen} navigation={this.props.navigation} />
           <Stack.Screen name="Save" component={SaveScreen} navigation={this.props.navigation} />
           <Stack.Screen name="Comment" component={CommentScreen} navigation={this.props.navigation} />
@@ -107,14 +108,5 @@ export class App extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default App;

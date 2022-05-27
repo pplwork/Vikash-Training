@@ -9,11 +9,10 @@ const Profile = (props) => {
   const [user, setuser] = useState(null);
   const [isfollowing, setIsfollowing] = useState(false);
 
-  const { currentUser, posts } = props;
-
-  console.log(currentUser, posts);
-
   useEffect(() => {
+
+    const { currentUser, posts } = props;
+
     if (props.route.params.uid === firebase.auth().currentUser.uid) {
       setuser(currentUser);
       setUserPosts(posts);
@@ -59,6 +58,7 @@ const Profile = (props) => {
     console.log(userPosts);
   }, [props.route.params.uid, props.following]);
 
+
   const onFollow = () => {
     firebase
       .firestore()
@@ -83,9 +83,11 @@ const Profile = (props) => {
     firebase.auth().signOut();
   };
 
+
   if (user === null) {
     return <View />;
   }
+
 
   return (
     <View style={style.container}>
@@ -101,9 +103,9 @@ const Profile = (props) => {
         {props.route.params.uid !== firebase.auth().currentUser.uid ? (
           <View>
             {isfollowing ? (
-              <Button title="Following" onPress={() => onUnfollow()} />
+              <Button title="unfollow" onPress={() => onUnfollow()} />
             ) : (
-              <Button title="Follow" onPress={() => onFollow()} />
+              <Button title="follow" onPress={() => onFollow()} />
             )}
           </View>
         ) : (
@@ -119,7 +121,7 @@ const Profile = (props) => {
           data={userPosts}
           renderItem={({ item }) => (
             <View style={style.containerImage}>
-              <Image style={style.image} source={{ uri: item.downloadURL }} />
+              <Image style={style.image} source={{ uri: item.downloadUrl }} />
             </View>
           )}
         />
@@ -127,7 +129,7 @@ const Profile = (props) => {
     </View>
   );
 };
-
+ 
 const style = StyleSheet.create({
   container: {
     flex: 1,
@@ -151,7 +153,7 @@ const style = StyleSheet.create({
 const mapStateToProps = (store) => ({
   currentUser: store.user.currentUser,
   posts: store.user.posts,
-  following: store.user.following,
+  following:store.user.following
 });
 
 export default connect(mapStateToProps, null)(Profile);

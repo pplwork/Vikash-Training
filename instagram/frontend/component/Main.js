@@ -16,7 +16,7 @@ const EmptyScreen = () => {
   return (null)
 }
 
-export class Main extends Component {
+export class MainScreen extends Component {
   componentDidMount() {
     this.props.clearData();
     this.props.fetchUser();
@@ -78,7 +78,6 @@ export class Main extends Component {
 const mapStateToProps = (store) => ({
   currentUser: store.user.currentUser,
 });
-const mapDispatchProps = (dispatch) =>
-  bindActionCreators({ fetchUser, fetchUserPosts, fetchUserFollowing, clearData }, dispatch);
+const mapDispatchProps = (dispatch) =>bindActionCreators({ fetchUser, fetchUserPosts, fetchUserFollowing, clearData }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchProps)(Main);
+export default connect(mapStateToProps, mapDispatchProps)(MainScreen);
