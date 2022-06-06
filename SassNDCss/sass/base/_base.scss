@@ -1,0 +1,35 @@
+@import '../abstract/mixins';
+@import '../abstract/variables';
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+
+    @include respond(phone){
+        font-size: 50%;         //1rem =8px, 9/16=50%
+    }
+    @include respond(tab-land){
+        font-size: 50%;         //1rem =9px, 9/16=56.5%
+    }
+    @include respond(tab){
+        font-size: 50%;         //1rem =8px, 8/16=50%
+    }
+    @include respond(big-desktop){
+        font-size: 75%;          //1rem =12px, 12/16=75%
+    }
+}
+
+body {
+    box-sizing: border-box;
+}
+
+::selection{
+    background-color: $color-primary;
+}

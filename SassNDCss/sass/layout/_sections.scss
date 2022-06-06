@@ -1,0 +1,17 @@
+.preview{
+    display: flex;
+    gap: 1rem;
+
+    @include respond(tab){
+        flex-direction: column;
+        margin-bottom: 15rem;
+    }
+
+    &-left{
+        flex: 1;
+        margin-bottom: 4rem;
+    }
+    &-right{
+        flex: 1;
+    }
+}

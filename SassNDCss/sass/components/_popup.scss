@@ -1,0 +1,134 @@
+.popup{
+    width: 100%;
+    height: 120vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba($color: #000000, $alpha: .4);
+    z-index: 2000;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .3s ease-in;
+    overflow: auto;
+    backdrop-filter: blur(10px);
+
+    &:target{
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &:target &__content{
+        opacity: 1;
+        transform: translate(-50%,-50%) scale(1);
+    }
+
+    &__content{
+        width: 65%;
+        background-color: $color-white;
+        box-shadow: 0 2rem 4rem rgba($color: #000000, $alpha: .2);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%) scale(.2);
+        border-radius: 3px;
+        display: table;
+        overflow: hidden;
+        transition: all ease-out .3s .1s;
+        opacity: 0;
+
+        @include respond(tab) {
+            top:70%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+            width: 85%;
+        }
+    }
+
+    &__close{
+        &:link,
+        &:visited{
+            color: $color-grey-dark;
+            position: absolute;
+            top: 2rem;
+            right: 2.5rem;
+            font-size: 3rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all .3s ease-in;
+            line-height: 1;
+        }
+        &:hover{
+            color: $color-primary;
+        }
+        @include respond(tab) {
+            top: 50rem;
+            right: 50rem;
+            font-weight: 600;
+            z-index: 1000;
+            color: white;
+            font-size: 5rem;
+            border-bottom: 3px solid $color-white;
+        }
+
+    }
+
+    &__left{
+        width: 33.33333%;
+        display: table-cell;
+
+        @include respond(tab) {
+            display: none;
+        }
+    }
+    &__right{
+        width: 66.66667%;
+        display: table-cell;
+        vertical-align: middle;
+        padding: 3rem 5rem;
+        margin-bottom: 10rem;
+
+        a{
+            text-align: center;
+            margin: auto;
+        }
+        @include respond(tab) {
+            width: 95%;
+            display: flex;
+            flex-direction: column;
+            padding: 1rem 2rem;
+        }
+    }
+    &__img{
+        display: block;
+        width: 100%;
+    }
+    &__text{
+        font-size: 1.4rem;
+        margin-bottom: 4rem;
+
+        column-count: 2;
+        column-gap: 2rem;
+        column-rule: 1px solid $color-grey-light-2;
+
+        -moz-column-count: 2;
+        -moz-column-gap: 2rem;
+        -moz-column-rule: 1px solid $color-grey-light-2;
+
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+
+        @include respond(tab) {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    @include respond(tab) {
+
+    }
+}
