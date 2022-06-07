@@ -4,6 +4,10 @@
     background-color: var(--Grey-light-2);
     box-shadow: var(--shadow-dark);
     min-height: 30rem;
+
+    @media only screen and (max-width:$bp-largest){
+            margin: 0;
+    }
 }
 .header{
     font-size: 1.4rem;
@@ -13,10 +17,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media only screen and (max-width:$bp-smallest){
+        flex-wrap: wrap;
+        height: 11rem;
+        align-content: space-around;
+    }
 }
 .content{
     display: flex;
     gap: 1rem;
+
+    @media only screen and(max-width:$bp-medium) {
+        flex-direction: column;
+    }
 }
 .sidebar{
     background-color: var(--Grey-dark-1);
@@ -39,6 +53,16 @@
     background: var(--Grey-light-3);
     border-bottom: 1px solid var(--Grey-light-2);
     font-size: 1.4rem;
+
+    @media only screen and(max-width:$bp-medium) {
+        padding: 3rem;
+        gap: 3rem;
+    }
+    @media only screen and(max-width:$bp-medium) {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
 }
 
 .description{
@@ -47,13 +71,20 @@
     box-shadow: 0 1rem 2rem rgba($color: #000000, $alpha: .1);
     padding: 3rem;
     flex: 0 0 60%;
+
+    @media only screen and(max-width:$bp-medium) {
+        padding: 2rem;
+    }
 }
 .user-reviews{
     height: 100vh;
-    overflow: scroll;
+    overflow-y: auto;
     flex: 1;
-    // display: flex;
-    // flex-direction: column;
+   
+    &::-webkit-scrollbar {
+        width: 0px;  /* Remove scrollbar space */
+        // background: transparent;  /* Optional: just make scrollbar invisible */
+    }
 }
 
 .paragraph:not(:last-of-type){
@@ -86,9 +117,14 @@
         margin-right: .7rem;
         background-size: cover;
 
-        background-color: var(--color-primary);
-        -webkit-mask-image: url('../img/chevron-thin-right.svg');
-        -webkit-mask-size: cover;
+        @supports (-webkit-mask-image:url()) or (mask-image:url()){
+            background-color: var(--color-primary);
+            -webkit-mask-image: url('../img/chevron-thin-right.svg');
+            -webkit-mask-size: cover;
+            mask-image: url('../img/chevron-thin-right.svg');
+            mask-size: cover;
+            background-image: none;
+        }
     }
 }
 
@@ -104,7 +140,9 @@
 
     }
     &__friends{
-
+        @media only screen and(max-width:$bp-medium) {
+            display: flex;
+        }
     }
 
     &__photo{
@@ -128,6 +166,11 @@
     margin-bottom: 3.5rem;
     overflow: hidden;
     position: relative;
+
+    @media only screen and(max-width:$bp-medium) {
+        padding: 2rem;
+        margin-bottom: 2.5rem;
+    }
 
     &__text{
         margin-bottom: 2rem;

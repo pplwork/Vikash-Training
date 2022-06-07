@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Flex Direction</title>
 </head>
 
@@ -44,7 +45,7 @@
         <div class="content">
             <nav class="sidebar">
                 <ul class="side-nav">
-                    <li class="side-nav__item side-nav__item--active">
+                    <li class="side-nav__item">
                         <a href="" class="side-nav__link">
                             <svg class="side-nav__icon">
                                 <use xLink:href="img/sprite.svg#icon-home" />
@@ -53,8 +54,9 @@
                         </a>
                     </li>
                     <li class="side-nav__item ">
-                        <a href="#" class="side-nav__link"><svg class="side-nav__icon">
-                                <use xLink:href="img/sprite.svg#icon-aircraft" />
+                        <a href="#" class="side-nav__link">
+                            <svg class="side-nav__icon">
+                                <use xLink:href="img/sprite.svg#icon-star" />
                             </svg>
                             <span>Flight</span></a>
 
@@ -66,7 +68,7 @@
                             <span>Rent</span></a>
 
                     </li>
-                    <li class="side-nav__item">
+                    <li class="side-nav__item side-nav__item--active">
                         <a href="#" class="side-nav__link">
                             <svg class="side-nav__icon">
                                 <use xLink:href="img/sprite.svg#icon-map" />
@@ -233,9 +235,9 @@
                             </figcaption>
                         </figure>
                         <figure class="review">
-                            <blockquote class="review__text">Lorem ipsum dolor sit amet . Quas maiores rem repudiandae,
-                                hic facere optio quisquam iusto autem
-                                architecto dolores repellat nostrum, tempora aut. Commodi nihil culpa vitae?
+                            <blockquote class="review__text">Lorem ipsum dolor sit amet . Quas
+                                rem repudiandae,hic facere optio quisquam iusto autemmaiores culpa
+                                architecto dolores repellat nostrum, tempora aut. Commodi nihil vitae?
                             </blockquote>
                             <figcaption class="review__user">
                                 <img src="./img/user-3.jpg" alt="user1" class="review__photo">
@@ -246,9 +248,18 @@
                                 <div class="review__rating">8.8</div>
                             </figcaption>
                         </figure>
-
                         <button class="btn-inline">Show all <span>&rarr;</span></button>
                     </div>
+                </div>
+                
+                <div class="cta">
+                    <h2 class="cta__book-now">
+                       four rooms matched to your profile, we have selected 4 rooms for you
+                    </h2>
+                    <button class="btn">
+                        <span class="btn__visible">Book now</span>
+                        <span class="btn__invisible">Only 4 rooms left</span>
+                    </button>
                 </div>
             </main>
         </div>
