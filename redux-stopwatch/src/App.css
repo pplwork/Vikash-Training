@@ -1,0 +1,42 @@
+.App {
+  text-align: center;
+  width: 80%;
+  max-width: 90%;
+  margin: auto;
+  margin-top: 5rem;
+  background: rgb(228, 228, 228);
+  height: 80vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+.btn--primary{
+  background: rgb(39, 255, 241);
+}
+.btn--outline{
+  background: aquamarine;
+  border: 1px solid rgb(93, 93, 234);
+}
+.btn--test{
+  background: rgb(252, 125, 45);
+}
+
+.controllers{
+  display: flex;
+  justify-content: space-evenly;
+}
+.btn{
+  padding: 1rem 2rem;
+  outline: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.laps{
+  background: rgb(255, 228, 177);
+  display: block;
+  width: 80%;
+  border: 1px solid #ff6464;
+  margin: auto;
+  overflow-y: scroll;
+}
