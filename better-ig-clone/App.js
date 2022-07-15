@@ -8,8 +8,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import store from "./store";
-// import { Provider } from "react-redux";
-import { useSelector, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 
 import Profile from "./src/component/screens/Profile";
 import Home from "./src/component/screens/Home";
@@ -22,8 +21,8 @@ import Save from "./src/component/screenComponents/Save";
 import Status from "./src/component/screenComponents/Status";
 import FriendProfile from "./src/component/screenComponents/FriendProfile";
 import EditProfile from "./src/component/screenComponents/EditProfile";
+import UserProfileSave from "./src/component/screenComponents/UserProfileSave";
 
-import LandingScreen from "./src/login/Landing";
 import Register from "./src/login/Register";
 import Login from "./src/login/Login";
 
@@ -33,8 +32,7 @@ import { login } from "./src/redux/actions/userActions";
 export default function App() {
   const [loogedIn, setLoogedIn] = useState(false);
   const [loaded, setLoaded] = useState(true);
-
-  const dispatch= useDispatch();
+  const [logdInUser, setLogdInUser] = useState("");
 
   useEffect(() => {
     setLoaded(false);
@@ -47,11 +45,15 @@ export default function App() {
         console.log(user);
         setLoaded(true);
         setLoogedIn(true);
+        setLogdInUser(user);
         console.log(user.displayName);
       }
     });
+  }, [auth]);
 
-  }, []);
+  useEffect(() => {
+    console.log("logdInUser", logdInUser);
+  }, [logdInUser]);
 
   const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
@@ -127,9 +129,10 @@ export default function App() {
     );
   }
 
+  <App />;
   return (
     // <Text style={{fontFamily:"OpenSans"}}>HI</Text>
-    // <Provider store={store}>
+    <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
@@ -142,8 +145,9 @@ export default function App() {
           <Stack.Screen name="EditProfile" component={EditProfile} />
           <Stack.Screen name="Add" component={Add} />
           <Stack.Screen name="Save" component={Save} />
+          <Stack.Screen name="UserProfileSave" component={UserProfileSave} />
         </Stack.Navigator>
       </NavigationContainer>
-    // </Provider>
+    </Provider>
   );
 }

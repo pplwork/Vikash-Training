@@ -4,7 +4,15 @@ import Ionic from "react-native-vector-icons/Ionicons";
 import Feather from "react-native-vector-icons/Feather";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
-export const ProfileBody = ({ name, accountName, postImage }) => {
+export const ProfileBody = ({
+  name,
+  accountName,
+  postImage,
+  following,
+  followers,
+  posts,
+}) => {
+  console.log("name,accountName,postImage", name, accountName, postImage);
   return (
     <View>
       <View
@@ -35,7 +43,7 @@ export const ProfileBody = ({ name, accountName, postImage }) => {
                 fontSize: 20,
               }}
             >
-              {name}
+              {accountName}
             </Text>
             <TouchableOpacity
               style={{ marginRight: 20, alignSelf: "flex-end" }}
@@ -102,8 +110,7 @@ export const ProfileBody = ({ name, accountName, postImage }) => {
                 fontWeight: "bold",
               }}
             >
-              {/* {post} */}
-              9000
+              {posts}
             </Text>
             <Text>Posts</Text>
           </View>
@@ -121,8 +128,7 @@ export const ProfileBody = ({ name, accountName, postImage }) => {
                 fontWeight: "bold",
               }}
             >
-              {/* {followers} */}
-              6854
+              {followers}
             </Text>
             <Text>Followers</Text>
           </View>
@@ -139,8 +145,7 @@ export const ProfileBody = ({ name, accountName, postImage }) => {
                 fontWeight: "bold",
               }}
             >
-              {/* {following} */}
-              700
+              {following}
             </Text>
             <Text>Following</Text>
           </View>

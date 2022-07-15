@@ -9,10 +9,12 @@ import {
 } from "react-native";
 import { Camera, CameraType } from "expo-camera";
 import * as ImagePicker from "expo-image-picker";
-import {useNavigation} from '@react-navigation/native';
-
+import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
+import { redirectEditProfile } from "../../redux/actions/userActions";
 
 export default function Add() {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
 
   const [hasCameraPermission, sethasCameraPermission] = useState(null);
@@ -20,8 +22,11 @@ export default function Add() {
   const [type, setType] = useState(CameraType.back);
   const [camera, setCamera] = useState(null);
   const [image, setImage] = useState(null);
+  const { canRedirect } = useSelector((state) => state.suggest);
 
   useEffect(() => {
+    dispatch(redirectEditProfile());
+
     (async () => {
       const cameraStatus = await Camera.requestCameraPermissionsAsync();
       sethasCameraPermission(cameraStatus.status === "granted");
@@ -29,11 +34,6 @@ export default function Add() {
       const galleryStatus = await ImagePicker.requestCameraPermissionsAsync();
 
       sethasGalleryPermission(galleryStatus.status === "granted");
-
-      // if(galleryStatus.status !== 'granted'){
-      //   sethasGalleryPermission("granted")
-      //   alert('sorry, we need camera roll permission to make it work!')
-      // }
     })();
   }, []);
 
@@ -89,8 +89,12 @@ export default function Add() {
       <Button
         title="Save"
         onPress={() => {
-          console.log(image)
-          navigation.navigate("Save", { image })
+          console.log(image);
+          {
+            canRedirect
+              ? navigation.navigate("UserProfileSave", { image })
+              : navigation.navigate("Save", { image });
+          }
         }}
       />
       {image && <Image source={{ uri: image }} style={{ flex: 1 }} />}

@@ -1,12 +1,26 @@
-import { StyleSheet, Text, View, StatusBar, ScrollView, TouchableOpacity } from "react-native";
-import React from "react";
+import {
+  Text,
+  View,
+  StatusBar,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
+import React, { useEffect } from "react";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import Feather from 'react-native-vector-icons/Feather';
+import Feather from "react-native-vector-icons/Feather";
 import Ionic from "react-native-vector-icons/Ionicons";
-import Stories from '../screenComponents/Stories'
-import Post from '../screenComponents/Post'
+import Stories from "../screenComponents/Stories";
+import Post from "../screenComponents/Post";
+
+import { useDispatch } from "react-redux";
+import { getUserData } from "../../redux/actions/userActions";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUserData());
+  }, []);
+
   return (
     <View style={{ backgroundColor: "white", height: "100%" }}>
       <StatusBar
@@ -32,19 +46,22 @@ const Home = () => {
         >
           Instagram
         </Text>
-        <Feather name="navigation" style={{fontSize: 24}} />
+        <Feather name="navigation" style={{ fontSize: 24 }} />
       </View>
 
-      <ScrollView
-      showsVerticalScrollIndicator={false}
-      >
-        <Stories/>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Stories />
         {/* <Post/> */}
         <TouchableOpacity
-          style={{justifyContent: 'center', alignItems: 'center', padding: 20}}>
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            padding: 20,
+          }}
+        >
           <Ionic
             name="ios-reload-circle-sharp"
-            style={{fontSize: 60, opacity: 0.2}}
+            style={{ fontSize: 60, opacity: 0.2 }}
           />
         </TouchableOpacity>
       </ScrollView>
@@ -53,5 +70,3 @@ const Home = () => {
 };
 
 export default Home;
-
-const styles = StyleSheet.create({});

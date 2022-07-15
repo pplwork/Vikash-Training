@@ -73,7 +73,8 @@ const Save = ({ route, navigation }) => {
         downloadUrl,
         likesCount: 0,
         caption,
-        creation: Timestamp.fromDate(new Date("December 10, 2020")),
+        comments:[],
+        creation: Timestamp.fromDate(new Date(Date.now())),
       }
     ).then(() => navigation.popToTop())
     .catch(err=>console.log(err))

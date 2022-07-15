@@ -9,10 +9,18 @@ import {
 } from "react-native";
 import Ionic from "react-native-vector-icons/Ionicons";
 import React from "react";
+import { db, auth } from "../../../firebase.config";
+import { updateProfile } from "firebase/auth";
+import { useNavigation } from "@react-navigation/native";
 
 const EditProfile = ({ route, navigation }) => {
+  // const navigation = useNavigation();
   const { name, accountName, postImage, following, followers, posts } =
     route.params;
+
+    console.log('auth.cu', auth.currentUser.photoURL)
+
+  const handleProfileImage = () => {};
 
   const TostMessage = () => {
     // ToastAndroid.show("Edited Sucessfully !", ToastAndroid.SHORT);
@@ -61,10 +69,13 @@ const EditProfile = ({ route, navigation }) => {
         <TouchableOpacity
           onPress={() => {
             TostMessage();
-            navigation.goBack();
+            navigation.navigate("Add");
           }}
         >
-          <Ionic name="checkmark" style={{ fontSize: 35, color: "cyan" }} />
+          <Ionic
+            name="checkmark"
+            style={{ fontWeight: 500, fontSize: 35, color: "blue" }}
+          />
         </TouchableOpacity>
       </View>
 
@@ -88,6 +99,7 @@ const EditProfile = ({ route, navigation }) => {
           />
         </View>
         <TouchableOpacity
+          onPress={() => handleProfileImage()}
           style={{
             marginVertical: 5,
           }}

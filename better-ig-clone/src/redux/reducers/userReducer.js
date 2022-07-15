@@ -2,6 +2,9 @@ import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_FAIL,
   USER_LOGIN_SUCCESS,
+  USER_AUTH_STATE_CHANGE,
+  USER_DATA_LOADING,
+  USER_DATA_FOUND,
 } from "../constants/userConstants";
 
 const initialState = {
@@ -10,15 +13,18 @@ const initialState = {
   error: "",
 };
 
-const userReducer = (state = initialState, action) => {
+export const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case USER_LOGIN_REQUEST:
+    case USER_DATA_LOADING:
       return {
         ...state,
         loading: true,
       };
 
     case USER_LOGIN_SUCCESS:
+    case USER_DATA_FOUND:
+      console.log('action.payload', action.payload)
       return {
         ...state,
         loading: false,
@@ -34,5 +40,15 @@ const userReducer = (state = initialState, action) => {
       };
     default:
       return state;
+  }
+};
+
+const loggedInUserReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case value:
+      break;
+
+    default:
+      break;
   }
 };

@@ -12,37 +12,67 @@ import { useNavigation } from "@react-navigation/native";
 
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../../firebase.config";
+import { setDoc, doc } from "firebase/firestore/lite";
+import { doesUsernameExist } from "../helpers/firebase";
 
 const Register = () => {
   const [userData, setUserData] = useState({
     password: "",
     email: "",
     name: "",
+    username: "",
   });
+  const [error, setError] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
 
-  const navigation = useNavigation();
-
   const handleSubmit = async () => {
-    try {
-      const response = await createUserWithEmailAndPassword(
-        auth,
-        userData.email,
-        userData.password
-      )
-        .then((res) => console.log("sucess", res))
-        .catch((err) => console.log(err));
+    if (userData.email === "") {
+      return setError(...error, "firstNam is emptye");
+    }
+    if (userData.password === "") {
+      return setError(...error, "lastName is empty");
+    }
+    if (userData.username === "") {
+      return setError(...error, "lastName is empty");
+    }
+    if (userData.name === "") {
+      return setError(...error, "lastName is empty");
+    }
 
-      if (auth.currentUser) {
-        console.log("adding name",auth.currentUser)
-        updateProfile(auth.currentUser, {
-          displayName: userData.name,
-        })
-          .then((res) => console.log("sucess", res))
-          .catch((err) => console.log(err));
+    const usernameExist = doesUsernameExist(userData.username);
+
+    if (usernameExist) {
+      try {
+        await createUserWithEmailAndPassword(
+          auth,
+          userData.email,
+          userData.password
+        ).then((res) => console.log("sucess", res));
+
+        if (auth.currentUser) {
+          console.log("CurrentUser name", auth.currentUser);
+
+          updateProfile(auth.currentUser, {
+            displayName: userData.name,
+          }).then((res) => console.log("sucess", res));
+
+          await setDoc(doc(db, "users", auth.currentUser.uid), {
+            userId: auth.currentUser.uid,
+            fullName: userData.name.toLowerCase(),
+            username: userData.username.toLowerCase(),
+            email: userData.email.toLowerCase(),
+            following: [],
+            followers: [],
+            likes: 0,
+            createdAt: Date.now(),
+          }).then(() => console.log("userCreated Succesfully"));
+        }
+      } catch (error) {
+        console.log(error);
+        setError(...error, error);
       }
-    } catch (error) {
-      console.log(error);
+    } else {
+      setError(...error, "username is already taken");
     }
   };
 
@@ -136,8 +166,8 @@ const Register = () => {
               borderColor: "#999",
               fontSize: 15,
             }}
-            placeholder="Email"
-            onChangeText={(email) => setUserData({ ...userData, email })}
+            placeholder="Username"
+            onChangeText={(username) => setUserData({ ...userData, username })}
           />
         </View>
         <View
@@ -168,7 +198,7 @@ const Register = () => {
               borderColor: "#999",
               fontSize: 15,
             }}
-            placeholder="Username"
+            placeholder="Email"
             onChangeText={(email) => setUserData({ ...userData, email })}
           />
         </View>
