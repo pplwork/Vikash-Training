@@ -44,6 +44,7 @@ const auth = (state, { type, payload }) => {
         data: null,
       };
     case LOGOUT_USER:
+      console.log("logout user called")
       return {
         ...state,
         isLoggedIn: false,

@@ -9,6 +9,7 @@ import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { LOGIN } from "../../constants/routeNames";
 
 const Register = () => {
+
   const { navigate } = useNavigation();
   const [form, setForm] = useState({});
   const [errors, setError] = useState({});

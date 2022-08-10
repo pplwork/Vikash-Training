@@ -3,13 +3,19 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import ContactComponent from "../../components/ContactComponent";
-import GlobalContext from "../../context/Provider";
+import { GlobalContext } from "../../context/Provider";
+import getContacts from "../../context/actions/contacts/getContacts";
 
 const Contacts = () => {
   const { setOptions, toggleDrawer } = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
-  // const { contactsState:{data, loading} } = useContext(GlobalContext);
-  // console.log("contactsState", contactsState);
+  const {
+    contactsDispatch,
+    contactsState: {
+      getContacts: { data, loading },
+    },
+  } = useContext(GlobalContext);
+
   useEffect(() => {
     setOptions({
       headerLeft: () => (
@@ -21,8 +27,18 @@ const Contacts = () => {
       ),
     });
   }, []);
+
+  useEffect(() => {
+    getContacts()(contactsDispatch);
+  }, []);
+
   return (
-    <ContactComponent visible={modalVisible} setVisible={setModalVisible} />
+    <ContactComponent
+      data={data}
+      loading={loading}
+      visible={modalVisible}
+      setVisible={setModalVisible}
+    />
   );
 };
 

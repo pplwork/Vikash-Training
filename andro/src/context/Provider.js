@@ -12,6 +12,7 @@ const GlobalProvider = ({ children }) => {
     contacts,
     contactsinitalstate
   );
+  console.log('contactsState,authinitalstate', contactsState,authinitalstate)
 
   return (
     <GlobalContext.Provider

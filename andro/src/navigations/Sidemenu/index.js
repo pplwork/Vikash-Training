@@ -16,7 +16,6 @@ import Fontisto from "react-native-vector-icons/Fontisto";
 import Logout from "react-native-vector-icons/AntDesign"
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
-
 const SideMenu = ({ navigation, authDispatch }) => {
   const handleLogout = () => {
     console.log("navbar toggle");
